@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+	<meta charset="utf-8">
+	<title>POST</title>
+</head>
+
+<script>
+	async function post() {
+		const url = 'http://localhost:8010/proxy/services/oauth2/token';
+
+		const data = "grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=eyJhbGciOiAiUlMyNTYiLCAidHlwIjogImp3dCJ9.eyJhdWQiOiAiaHR0cHM6Ly90ZXN0LnNhbGVzZm9yY2UuY29tIiwic3ViIjogInNzd2FsZWhAcHJvdmlkaXR5LmNvbSIsImlzcyI6ICIzTVZHOUllS091OXBNTGNJS1plSFhNN1p4dHJRdlZTUEUwTWFQMHpnanlabGtwQWJVd0M0dXN4aXhkN1NCcWtJVEVmSXJ6TjhMZjhrU0VScmMxTUpaIiwiZXhwIjogIjE2Nzc2MDkwODIifQ.iS2SwyBvks3Xd1_7s-MscW5JVyiJBYe6AnpsNgELcHN5upmbV4LgVVaQ2egUFTAvxV7CrSF5hFrO_IJZGX0i6BlFeTB9KB13O4Ffartyg7TGli2_OixDfTVms6YTL_WgPujA5QHXXJC4ghFB1Vg3zBaLOgxyJrfMcj2UsYpOGVO1RZwZ_l7hztmj5G70KcgmxkKmQRFKh1n8kFbcJeVkTTLA4jkaiEGL7JqSUKGyEGr6A0leAvlKiMF0WLLex6GFNsnEZVAdwoYP0tc9qDyrzR21yy2_eqmQmdRlBZ4dc6fmFzk8x4CYBEmPN6JvJiK7uq7aZxp1Nt-HRQc5ZQ6Ujg";
+
+		const response = await fetch(url, {
+    	method: 'POST',
+    	headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+    	},
+    	body: data,
+		});
+
+		const text = await response.text();
+		let input = document.createElement('h6');
+		input.innerHTML = text;
+		document.body.appendChild(input);
+		console.log(text);
+	}
+	
+	document.onreadystatechange = function () {
+	  if (document.readyState == "complete") {
+			let button = document.createElement('button');
+			button.textContent = "POST";
+			button.onclick = function() {
+			    post();
+			};
+			document.body.appendChild(button).setAttribute('id','button');
+	  }
+	}
+	
+	
+</script>
+
+<body>
+	<h1>POST Call</h1>
+		
+</body>
+
+</html>
